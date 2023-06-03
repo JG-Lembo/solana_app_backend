@@ -1,0 +1,21 @@
+[package]
+name = "myepicproject"
+version = "0.1.0"
+description = "Created with Anchor"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib", "lib"]
+name = "myepicproject"
+
+[features]
+no-entrypoint = []
+no-idl = []
+no-log-ix-name = []
+cpi = ["no-entrypoint"]
+default = []
+
+[dependencies]
+anchor-lang = "0.27.0"
+getrandom = { version = "0.2.2", features = ["custom"] }
+solana-program = "=1.14.17"
