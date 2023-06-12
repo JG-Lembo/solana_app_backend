@@ -23,7 +23,28 @@ const main = async () => {
   console.log("👀 GIF Count", account.totalGifs.toString());
 
   // Você precisará agora passar um link do GIF para a função! Você também precisará passar o usuário que está enviando o GIF!
-  await program.rpc.addGif("insira_o_link_do_seu__gif_aqui", {
+  await program.rpc.addGif("insira_o_link_do_seu__gif_aqui", "Pokemon", {
+    accounts: {
+      baseAccount: baseAccount.publicKey,
+      user: provider.wallet.publicKey,
+    },
+  });
+
+  await program.rpc.likeGif("Pokemon", {
+    accounts: {
+      baseAccount: baseAccount.publicKey,
+      user: provider.wallet.publicKey,
+    },
+  });
+
+  // Chama a conta
+  account = await program.account.baseAccount.fetch(baseAccount.publicKey);
+  console.log("👀 GIF Count", account.totalGifs.toString());
+
+  // Acessa o gif_list na conta
+  console.log("👀 GIF List", account.gifList);
+
+  await program.rpc.removeLikeGif("Pokemon", {
     accounts: {
       baseAccount: baseAccount.publicKey,
       user: provider.wallet.publicKey,
